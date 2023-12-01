@@ -21,13 +21,12 @@ services:
       - "local"
     platform: linux/x86_64
     container_name: restaurant_database
-    image: mysql:8.0.23
+    image: postgres:16.1
     environment:
-      MYSQL_DATABASE: restaurant
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: root_password
+      POSTGRES_DB: restaurant
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
     ports:
-      - "${RESTAURANT_DB_PORT:-3313}:3306"
+      - "${RESTAURANT_DB_PORT:-3313}:5432"
     volumes:
       - ./src/main/resources/db/restaurant/restaurant.sql:/docker-entrypoint-initdb.d/init_db.sql

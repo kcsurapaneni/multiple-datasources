@@ -1,7 +1,7 @@
 -- restaurants table
 
 CREATE TABLE restaurants (
-    restaurant_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    restaurant_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
     phone VARCHAR(15),
@@ -22,8 +22,8 @@ VALUES
 -- invoice table
 
 CREATE TABLE invoices (
-    invoice_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    order_id INT UNSIGNED NOT NULL,
+    invoice_id SERIAL PRIMARY KEY,
+    order_id INT NOT NULL,
     invoice_amount DECIMAL(10, 2) NOT NULL,
     invoice_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

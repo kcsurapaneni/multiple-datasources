@@ -20,7 +20,7 @@ spring:
       username: ${DB_USER:user}
       password: ${DB_PASSWORD:password}
     restaurant:
-      url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3313}/${DB_NAME:restaurant}
+      url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:3313}/${DB_NAME:restaurant}
       username: ${DB_USER:user}
       password: ${DB_PASSWORD:password}
   docker:

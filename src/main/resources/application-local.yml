@@ -1,0 +1,29 @@
+server:
+  port: 9191
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: multiple datasources
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+#    database-platform:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  datasource:
+    customer:
+      url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3312}/${DB_NAME:customer}
+      username: ${DB_USER:user}
+      password: ${DB_PASSWORD:password}
+    restaurant:
+      url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3313}/${DB_NAME:restaurant}
+      username: ${DB_USER:user}
+      password: ${DB_PASSWORD:password}
+  docker:
+    compose:
+      profiles:
+        active: local

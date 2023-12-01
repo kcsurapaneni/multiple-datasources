@@ -1,0 +1,33 @@
+version: '3'
+services:
+  customer_db:
+    profiles:
+      - "local"
+    platform: linux/x86_64
+    container_name: customer_database
+    image: mysql:8.0.23
+    environment:
+      MYSQL_DATABASE: customer
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "${ORDER_DB_PORT:-3312}:3306"
+    volumes:
+      - ./src/main/resources/db/customer/customer.sql:/docker-entrypoint-initdb.d/init_db.sql
+
+  restaurant_db:
+    profiles:
+      - "local"
+    platform: linux/x86_64
+    container_name: restaurant_database
+    image: mysql:8.0.23
+    environment:
+      MYSQL_DATABASE: restaurant
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "${RESTAURANT_DB_PORT:-3313}:3306"
+    volumes:
+      - ./src/main/resources/db/restaurant/restaurant.sql:/docker-entrypoint-initdb.d/init_db.sql

@@ -6,6 +6,7 @@ services:
     platform: linux/x86_64
     container_name: customer_database
     image: mysql:8.0.23
+#    restart: always
     environment:
       MYSQL_DATABASE: customer
       MYSQL_USER: user
@@ -22,6 +23,7 @@ services:
     platform: linux/x86_64
     container_name: restaurant_database
     image: postgres:16.1
+#    restart: always
     environment:
       POSTGRES_DB: restaurant
       POSTGRES_USER: user
@@ -30,3 +32,19 @@ services:
       - "${RESTAURANT_DB_PORT:-3313}:5432"
     volumes:
       - ./src/main/resources/db/restaurant/restaurant.sql:/docker-entrypoint-initdb.d/init_db.sql
+
+  review_db:
+#    profiles:
+#      - "local"
+    image: mongo:4.4.26-focal
+#    restart: always
+    platform: linux/x86_64
+    container_name: review_database
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: review
+    ports:
+      - "${RESTAURANT_DB_PORT:-3314}:27017"
+    volumes:
+      - ./src/main/resources/db/review/review.js:/docker-entrypoint-initdb.d/init-mongo.js

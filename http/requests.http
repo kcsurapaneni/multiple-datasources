@@ -7,3 +7,8 @@ Accept: application/json
 
 GET http://localhost:9191/api/restaurant
 Accept: application/json
+
+###
+
+GET http://localhost:9191/api/review
+Accept: application/json

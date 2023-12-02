@@ -4,6 +4,12 @@ server:
     context-path: /api
 
 spring:
+  data:
+    mongodb:
+      database: test
+      port: 3314
+      username: user
+      password: password
   application:
     name: multiple datasources
   jpa:
@@ -23,6 +29,10 @@ spring:
       url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:3313}/${DB_NAME:restaurant}
       username: ${DB_USER:user}
       password: ${DB_PASSWORD:password}
+#    review:
+#      url: mongodb+srv://${DB_HOST:localhost}:${DB_PORT:3314}/${DB_NAME:test}
+#      username: ${DB_USER:user}
+#      password: ${DB_PASSWORD:password}
   docker:
     compose:
       profiles:
